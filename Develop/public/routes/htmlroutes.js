@@ -3,7 +3,7 @@ const path = require('path');
 
 // GET Route for homepage
 module.exports = (router) => {
-Router.get("notes", (req, res) =>
+Router.get("/notes", (req, res) =>
   res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
