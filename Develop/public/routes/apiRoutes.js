@@ -5,28 +5,34 @@ const { v4: uuidv4 } = require('uuid')
 const db = require("../../db.json");
 
 module.exports = Router;
-Router.get("/api/notes", (req, res) => {
-    console.info(`${req.method} request received for tips`);
-    readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
-  });
-  
-  // POST Route for a new UX/UI tip
-  Router.post('../../db.json', (req, res) => {
-    console.info(`${req.method} request received to add a tip`);
-  
-    const { username, topic, tip } = req.body;
-  
-    if (req.body) {
-      const newTip = {
-        username,
-        tip,
-        topic,
-        tip_id: uuid(),
-      };
-  
-      readAndAppend(newTip, './db/db.json');
-      res.json(`Tip added successfully 🚀`);
-    } else {
-      res.error('Error in adding tip');
+
+//API request
+router.get("/api/notes", function (req, res) {
+    res.json(db);
+    fs.readFile(__dirname + "../../db/db.json", (err, data) => {
+    if (err) throw err;
+    res.json(JSON.parse(data));
+    });
+});
+
+// API POST request
+router.post("/api/notes", (req, res) => {
+    let allNotes = [];
+    let newNote = {
+        title: req.body.title,
+        text: req.body.text,
+        id: uuidv4(),
     }
+    fs.readFile(__dirname + "../../db/db.json", (err, data) => {
+        if (err) throw err;
+        allNotes = JSON.parse(data);
+        allNotes.push(newNote);
+        fs.writeFile(__dirname + "../../db/db.json", JSON.stringify(allNotes), "utf-8", (err) => {
+            if (err) throw err;
+            console.log("The note has been saved.")
+            res.end();
+        })
+    })
+    console.log(newNote)
   });
+  
