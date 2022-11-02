@@ -7,7 +7,7 @@ const uuid = require("../../db.json");
 
 Router.get('/tips', (req, res) => {
     console.info(`${req.method} request received for tips`);
-    readFromFile('./db/tips.json').then((data) => res.json(JSON.parse(data)));
+    readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
   });
   
   // POST Route for a new UX/UI tip
