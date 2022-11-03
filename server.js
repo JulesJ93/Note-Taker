@@ -1,8 +1,7 @@
-
+//const that makes the files route to the correct folder
 const apiRoutes = require('./routes/apiRoutes/api');
 const htmlRoutes = require('./routes/htmlRoutes/html');
 const express = require('express');
-const api = require('./routes/index.js');
 
 const PORT = process.env.PORT || 3001;
 
@@ -15,16 +14,6 @@ app.use('/api', apiRoutes);
 app.use('/', htmlRoutes);
 
 app.use(express.static('public'));
-
-// GET Route for homepage
-app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/index.html'))
-);
-
-// GET Route for notes page
-app.get('/feedback', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/notes.html'))
-);
 
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
