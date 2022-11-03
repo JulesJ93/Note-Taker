@@ -18,7 +18,8 @@ app.use('/', htmlRoutes);
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
 );
-
+const apiRoutes = require('./routes/apiRoutes/api');
+const htmlRoutes = require('./routes/htmlRoutes/html');
 const express = require('express');
 const path = require('path');
 const { clog } = require('./middleware/clog');
