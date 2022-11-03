@@ -1,10 +1,10 @@
-const Router = require("express").Router();
+const router = require("express").Router();
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid')
 // Helper method for generating unique ids
-const db = require("../../db.json");
+const db = require("../db/db.json");
 
-module.exports = Router;
+
 
 //API request
 router.get("/api/notes", function (req, res) {
@@ -35,4 +35,5 @@ router.post("/api/notes", (req, res) => {
     })
     console.log(newNote)
   });
+  module.exports = router;
   
