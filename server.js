@@ -2,7 +2,6 @@
 const apiRoutes = require('./routes/apiRoutes/api');
 const htmlRoutes = require('./routes/htmlRoutes/html');
 const express = require('express');
-const { clog } = require('./middleware/clog');
 const api = require('./routes/index.js');
 
 const PORT = process.env.PORT || 3001;
